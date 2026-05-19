@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+
+metadata:
+  generateName: iris-pipeline-
+
+spec:
+  entrypoint: iris-training
+
+  templates:
+    - name: iris-training
+
+      container:
+        image: python:3.10
+
+        command: ["python"]
+
+        args: ["pipeline.py"]

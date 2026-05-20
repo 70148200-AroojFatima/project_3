@@ -4,30 +4,37 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import joblib
 
-# Component A: Load and preprocess data
-data = load_iris()
+print("Step 1: Data Preprocessing")
 
+# Load dataset
+data = load_iris()
 X = data.data
 y = data.target
 
+# Split data
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2
 )
 
-print("Data preprocessing completed")
+print("Step 2: Model Training")
 
-# Component B: Train model
+# Train model
 model = RandomForestClassifier()
-
 model.fit(X_train, y_train)
 
-joblib.dump(model, "model.pkl")
+print("Step 3: Model Evaluation")
 
-print("Model training completed")
-
-# Component C: Evaluate model
+# Predictions
 predictions = model.predict(X_test)
 
+# Accuracy
 accuracy = accuracy_score(y_test, predictions)
 
 print(f"Model Accuracy: {accuracy}")
+
+print("Step 4: Model Packaging")
+
+# Save model
+joblib.dump(model, "model.pkl")
+
+print("Pipeline completed successfully!")
